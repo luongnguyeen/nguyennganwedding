@@ -49,7 +49,7 @@ h1, h2, h3, h4, h5 { font-family: var(--font-serif); }
     transition: transform 1.5s ease-in-out;
     
     /* FIX: MỖI CÁNH CỬA MANG ẢNH SONG HỶ VÀ CÓ MÀU NỀN ĐỎ */
-    background-image: url('images/nen-song-hy.png'); /* Tên file ảnh Song Hỷ của bạn */
+    background-image: url('images/nen-song-hy.jpg'); /* Tên file ảnh Song Hỷ của bạn */
     background-size: 200% 100%; /* Kéo giãn ảnh ra gấp đôi */
     background-repeat: no-repeat;
     
@@ -257,4 +257,5 @@ footer i { color: var(--primary-red); }
 
     .input-group { gap: 20px; }
 }
+
 
