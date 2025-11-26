@@ -24,9 +24,9 @@ window.addEventListener('load', () => {
             music.play().catch((error) => {
                 console.log("Trình duyệt chặn tự động phát nhạc. Người dùng cần bấm nút nhạc thủ công.");
             });
-        }, 1500); // Tăng lên 1800ms (1.8s) để đồng bộ tốt hơn với hiệu ứng CSS
+        }, 500); // Tăng lên 1800ms (1.8s) để đồng bộ tốt hơn với hiệu ứng CSS
 
-    }, 2800);
+    }, 500);
 });
 
 // Xử lý nút bật/tắt nhạc (GIỮ NGUYÊN)
@@ -75,4 +75,5 @@ function toggleGift() {
     const qrBox = document.getElementById('qr-codes');
     qrBox.classList.toggle('hidden');
 }
+
 
