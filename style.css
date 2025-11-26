@@ -79,23 +79,73 @@ h1, h2, h3, h4, h5 { font-family: var(--font-serif); }
 
 
 /* --- 3. HEADER SECTION (Ảnh 2) --- */
-.hero-section { text-align: center; padding-top: 50px; }
-.hero-content .sub-title { font-family: var(--font-script); font-size: 2rem; }
-.hero-image-frame img {
-    width: 80%; max-width: 400px; border-radius: 20px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1); margin: 20px 0;
+
+.hero-section { 
+    text-align: center; 
+    padding: 0; /* Xóa padding-top cũ */
+    position: relative;
+    /* Ảnh nền lớn sẽ nằm ở đây */
+    background-image: url('images/hero-bg.jpg'); /* ĐỔI TÊN FILE ẢNH NỀN LỚN CỦA BẠN */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh; /* Đảm bảo đủ cao để hiển thị đẹp */
+    display: flex; /* Dùng flexbox để căn giữa nội dung */
+    align-items: center;
+    justify-content: center;
 }
-.main-names { font-family: var(--font-script); font-size: 3.5rem; color: #333; margin: 10px 0; }
+
+.hero-content {
+    position: relative; /* Quan trọng: Để các chữ bên trong có thể dùng absolute */
+    z-index: 1; /* Đảm bảo nội dung nằm trên ảnh nền (nếu có overlay) */
+    width: 100%; /* Chiếm toàn bộ chiều rộng của hero-section */
+    text-align: center;
+    padding: 20px;
+    color: white; /* Chữ màu trắng để nổi bật trên ảnh nền */
+}
+
+/* Xóa bỏ hero-image-frame img cũ vì ảnh giờ là background */
+.hero-image-frame img {
+    display: none; /* Ẩn đi hoặc xóa bỏ đoạn này */
+}
+
+.hero-content .sub-title { 
+    font-family: var(--font-script); 
+    font-size: 2rem; 
+    color: white; /* Đảm bảo chữ trắng */
+    margin-bottom: 10px;
+}
+.main-names { 
+    font-family: var(--font-script); 
+    font-size: 3.5rem; 
+    color: white; /* Đảm bảo chữ trắng */
+    margin: 10px 0; 
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Thêm đổ bóng để chữ rõ hơn */
+}
+.date-highlight {
+    color: white;
+    font-size: 1.2rem;
+    margin-top: 15px;
+}
 .hero-date { 
     font-family: var(--font-serif); 
     font-size: 2rem; 
-    color: #555; 
-    border-top: 1px solid #ccc; 
-    border-bottom: 1px solid #ccc; 
+    color: white; /* Đảm bảo chữ trắng */
+    border-top: 1px solid rgba(255,255,255,0.5); 
+    border-bottom: 1px solid rgba(255,255,255,0.5); 
     display: inline-block; 
     padding: 10px 30px; 
     margin-top: 10px; 
     letter-spacing: 2px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Thêm đổ bóng */
+}
+
+
+/* --- Media Query cho Desktop (Cập nhật kích thước chữ) --- */
+@media (min-width: 768px) {
+    .hero-content .sub-title { font-size: 2.5rem; }
+    .main-names { font-size: 5rem; }
+    .hero-date { font-size: 2.5rem; }
 }
 
 /* --- 4. COUPLE SECTION (Ảnh 3) --- */
@@ -257,6 +307,7 @@ footer i { color: var(--primary-red); }
 
     .input-group { gap: 20px; }
 }
+
 
 
 
