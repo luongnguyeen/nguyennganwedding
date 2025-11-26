@@ -14,18 +14,19 @@ window.addEventListener('load', () => {
         // 1. Thêm class để cửa trượt ra 2 bên
         document.body.classList.add('intro-open');
 
-        // 2. Đợi thêm 1.5 giây cho hiệu ứng mở cửa chạy xong rồi ẩn overlay
+        // 2. Đợi thêm 1.8 giây cho hiệu ứng mở cửa chạy xong
+        // FIX: Tăng thời gian chờ để đảm bảo dải đỏ (lớp overlay) chỉ biến mất sau khi cửa đã mở hoàn toàn
         setTimeout(() => {
-            // Ẩn lớp phủ intro hoàn toàn
-            introOverlay.style.display = 'none';
+            // Ẩn TOÀN BỘ lớp phủ intro (bao gồm dải đỏ)
+            introOverlay.style.display = 'none'; 
             
-            // 3. Cố gắng phát nhạc (Trình duyệt có thể chặn)
+            // 3. Cố gắng phát nhạc 
             music.play().catch((error) => {
                 console.log("Trình duyệt chặn tự động phát nhạc. Người dùng cần bấm nút nhạc thủ công.");
             });
-        }, 1500); 
+        }, 500); // Tăng lên 1800ms (1.8s) để đồng bộ tốt hơn với hiệu ứng CSS
 
-    }, 2500);
+    }, 500);
 });
 
 // Xử lý nút bật/tắt nhạc (GIỮ NGUYÊN)
