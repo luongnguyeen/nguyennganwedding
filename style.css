@@ -28,30 +28,44 @@ h1, h2, h3, h4, h5 { font-family: var(--font-serif); }
 }
 
 /* --- 2. INTRO ANIMATION (Đã FIX triệt để) --- */
+/* Trong file style.css, tìm đoạn #intro-overlay */
 #intro-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
     z-index: 9999; display: flex; align-items: center; justify-content: center;
-    /* Lớp che chắn an toàn */
+    
+    /* FIX: CHỈ CÓ MÀU NỀN ĐỎ để làm lớp che chắn an toàn */
     background-color: var(--primary-red); 
+    
+    /* Đảm bảo KHÔNG có background-image nào ở đây */
+    /* background-image: none;  <-- có thể thêm dòng này để chắc chắn hơn*/
+    /* background-size: auto; */
+    /* background-position: initial; */
+    /* background-repeat: initial; */
 }
+
+/* Trong file style.css, tìm đoạn .door */
 .door {
     position: absolute; top: 0; width: 50%; height: 100%;
     transition: transform 1.5s ease-in-out;
     
-    /* Mỗi cánh cửa mang một nửa ảnh Song Hỷ */
-    background-image: url('images/nen-song-hy.png'); 
-    background-size: 200% 100%; 
+    /* FIX: MỖI CÁNH CỬA MANG ẢNH SONG HỶ VÀ CÓ MÀU NỀN ĐỎ */
+    background-image: url('images/nen-song-hy.png'); /* Tên file ảnh Song Hỷ của bạn */
+    background-size: 200% 100%; /* Kéo giãn ảnh ra gấp đôi */
     background-repeat: no-repeat;
     
-    /* Đảm bảo cánh cửa có màu nền */
-    /* KHÔNG cần background-color: transparent; */ 
+    /* Quan trọng: Cánh cửa cũng có màu nền đỏ, đề phòng ảnh tải lỗi */
+    background-color: var(--primary-red); 
 }
+
+/* Sửa lại đoạn .left-door */
 .left-door { 
     left: 0; 
     /* Hiển thị nửa trái của ảnh */
     background-position: left center; 
     border-right: 1px solid rgba(255,255,255,0.2); 
 }
+
+/* Sửa lại đoạn .right-door */
 .right-door { 
     right: 0; 
     /* Hiển thị nửa phải của ảnh */
@@ -243,3 +257,4 @@ footer i { color: var(--primary-red); }
 
     .input-group { gap: 20px; }
 }
+
