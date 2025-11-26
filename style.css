@@ -1,7 +1,7 @@
 /* --- 1. ROOT VARIABLES & RESET --- */
 :root {
     --primary-red: #d32f2f;
-    --bg-cream: #fdfcf0; /* Tông màu kem sáng giống mẫu */
+    --bg-cream: #fdfcf0; 
     --text-color: #333;
     --font-script: 'Great Vibes', cursive;
     --font-serif: 'Playfair Display', serif;
@@ -17,7 +17,6 @@ body {
 }
 h1, h2, h3, h4, h5 { font-family: var(--font-serif); }
 
-/* --- CHUNG & UTILITY --- */
 .container { max-width: 800px; margin: 0 auto; padding: 20px; }
 .text-danger { color: var(--primary-red); }
 .section-title {
@@ -28,68 +27,34 @@ h1, h2, h3, h4, h5 { font-family: var(--font-serif); }
     color: #333;
 }
 
-/* --- 2. INTRO ANIMATION (Song Hỷ Split) --- */
-
+/* --- 2. INTRO ANIMATION (Đã FIX triệt để) --- */
 #intro-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
     z-index: 9999; display: flex; align-items: center; justify-content: center;
-    
-    /* FIX: Chỉ giữ lại màu nền đỏ để che chắn 
-    background-color: var(--primary-red); */
-    
-    /* XÓA CÁC DÒNG NÀY ĐI (Nếu có) */
-    /* background-image: url('images/nen-song-hy.png'); */ 
-    /* background-size: cover; */
-    /* background-position: center; */
-    /* background-repeat: no-repeat; */
+    /* Lớp che chắn an toàn */
+    background-color: var(--primary-red); 
 }
-
-
 .door {
     position: absolute; top: 0; width: 50%; height: 100%;
     transition: transform 1.5s ease-in-out;
     
-    /* FIX: Mỗi cánh cửa sẽ mang ảnh Song Hỷ */
-    background-image: url('images/nen-song-hy.jpg'); /* Tên file ảnh Song Hỷ của bạn */
-    background-size: 200% 100%; /* Kéo giãn ảnh ra gấp đôi để mỗi cửa chiếm 1 nửa */
+    /* Mỗi cánh cửa mang một nửa ảnh Song Hỷ */
+    background-image: url('images/nen-song-hy.png'); 
+    background-size: 200% 100%; 
     background-repeat: no-repeat;
     
-    /* Đảm bảo cánh cửa KHÔNG trong suốt nữa, nó phải mang ảnh nền */
-    /* background-color: transparent; */ /* <--- XÓA dòng này đi */
-}
-
-/* Sửa lại đoạn .left-door */
-.left-door { 
-    left: 0; 
-    /* Căn ảnh nền sang mép trái để hiện nửa trái của ảnh */
-    background-position: left center; 
-    border-right: 1px solid rgba(255,255,255,0.2); 
-}
-
-/* Sửa lại đoạn .right-door */
-.right-door { 
-    right: 0; 
-    /* Căn ảnh nền sang mép phải để hiện nửa phải của ảnh */
-    background-position: right center; 
-    border-left: 1px solid rgba(255,255,255,0.2); 
-}
-
-/* Giữ nguyên border để tạo đường viền mờ ở giữa */
-.left-door { 
-    left: 0; 
-    border-right: 1px solid rgba(255,255,255,0.2); 
-}
-.right-door { 
-    right: 0; 
-    border-left: 1px solid rgba(255,255,255,0.2); 
+    /* Đảm bảo cánh cửa có màu nền */
+    /* KHÔNG cần background-color: transparent; */ 
 }
 .left-door { 
     left: 0; 
+    /* Hiển thị nửa trái của ảnh */
     background-position: left center; 
     border-right: 1px solid rgba(255,255,255,0.2); 
 }
 .right-door { 
     right: 0; 
+    /* Hiển thị nửa phải của ảnh */
     background-position: right center; 
     border-left: 1px solid rgba(255,255,255,0.2); 
 }
@@ -244,15 +209,9 @@ footer i { color: var(--primary-red); }
 /* --- 11. MEDIA QUERY CHO DESKTOP (Tối ưu màn hình lớn > 768px) --- */
 @media (min-width: 768px) {
     
-    /* 1. Tăng kích thước chữ tổng thể */
-    .section-title {
-        font-size: 4rem;
-    }
-    .main-names {
-        font-size: 5rem;
-    }
+    .section-title { font-size: 4rem; }
+    .main-names { font-size: 5rem; }
     
-    /* 2. Cải thiện bố cục phần Cô dâu & Chú rể */
     .couple-grid {
         display: grid;
         grid-template-columns: 1fr 1fr; 
@@ -260,7 +219,6 @@ footer i { color: var(--primary-red); }
         text-align: left;
     }
     
-    /* Chú rể: Ảnh bên trái, text bên phải */
     .groom-box {
         display: flex;
         flex-direction: row;
@@ -268,42 +226,20 @@ footer i { color: var(--primary-red); }
         text-align: left;
     }
     
-    /* Cô dâu: Ảnh bên phải, text bên trái */
     .bride-box {
         display: flex;
         flex-direction: row-reverse; 
         align-items: center;
         text-align: right;
     }
-    .groom-box .avatar, .bride-box .avatar {
-        margin: 0 20px;
-    }
-    .groom-box .avatar img, .bride-box .avatar img {
-        width: 180px; 
-        height: 250px;
-    }
+    .groom-box .avatar, .bride-box .avatar { margin: 0 20px; }
+    .groom-box .avatar img, .bride-box .avatar img { width: 180px; height: 250px; }
     
-    /* 3. Cải thiện bố cục Album Ảnh */
-    .gallery {
-        grid-template-columns: repeat(4, 1fr); 
-        gap: 15px;
-    }
+    .gallery { grid-template-columns: repeat(4, 1fr); gap: 15px; }
     
-    /* 4. Cải thiện phần đếm ngược */
-    #timer {
-        gap: 40px;
-    }
-    .time-box {
-        width: 100px; 
-        height: 100px;
-    }
-    .time-box span {
-        font-size: 2rem;
-    }
+    #timer { gap: 40px; }
+    .time-box { width: 100px; height: 100px; }
+    .time-box span { font-size: 2rem; }
 
-    /* 5. Cải thiện Form */
-    .input-group {
-        gap: 20px;
-    }
-
+    .input-group { gap: 20px; }
 }
