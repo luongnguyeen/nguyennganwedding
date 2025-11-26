@@ -34,7 +34,7 @@ h1, h2, h3, h4, h5 { font-family: var(--font-serif); }
     z-index: 9999; display: flex; align-items: center; justify-content: center;
     
     /* FIX: CHỈ CÓ MÀU NỀN ĐỎ để làm lớp che chắn an toàn */
-    background-color: var(--primary-red); 
+   */ background-color: var(--primary-red); */
     
     /* Đảm bảo KHÔNG có background-image nào ở đây */
     /* background-image: none;  <-- có thể thêm dòng này để chắc chắn hơn*/
@@ -257,5 +257,6 @@ footer i { color: var(--primary-red); }
 
     .input-group { gap: 20px; }
 }
+
 
 
