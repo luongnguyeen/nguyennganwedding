@@ -154,19 +154,21 @@ h1, h2, h3, h4, h5 { font-family: var(--font-serif); }
 }
 
 .bottom-text .main-names {
-    font-family: var(--font-script);
-    font-size: 3rem; /* Kích thước chữ cho mobile/mặc định */
-    margin: 0;
+    font-family: var(--font-script);
+    /* Giảm font-size xuống một chút cho Mobile (nếu 3rem vẫn quá lớn) */
+    font-size: 2.5rem; 
+    margin: 0;
     
-    /* Ngăn chữ bị ngắt xuống dòng */
+    /* Thuộc tính này là chìa khóa để giữ trên một dòng */
     white-space: nowrap; 
     
-    /* QUAN TRỌNG: Ẩn phần chữ bị tràn và thêm dấu ... */
-    overflow: hidden; 
-    text-overflow: ellipsis; 
+    /* Thêm padding an toàn để chữ không dính sát mép ảnh */
+    padding: 0 10px; 
     
-    /* Đảm bảo chữ luôn hiển thị, ngay cả khi bị cắt */
-    display: block; 
+    /* Đảm bảo chữ bị ẩn khi quá dài, không gây tràn web */
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    display: block;
 }
 
 .bottom-text .date-highlight, .bottom-text .hero-date {
@@ -424,6 +426,7 @@ footer i { color: var(--primary-red); }
     padding-right: 20px; /* Đảm bảo có khoảng trống an toàn ở hai bên trên mobile */
     width: 100%; /* Đảm bảo nó vẫn chiếm hết chiều rộng trên mobile */
 }
+
 
 
 
