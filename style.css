@@ -82,27 +82,54 @@ h1, h2, h3, h4, h5 { font-family: var(--font-serif); }
 
 .hero-section { 
     text-align: center; 
-    padding: 0; /* Xóa padding-top cũ */
+    padding-top: 50px; /* Thêm lại padding để có khoảng cách với mép trên */
     position: relative;
-    /* Ảnh nền lớn sẽ nằm ở đây */
-    background-image: url('images/hero-bg.jpg'); /* ĐỔI TÊN FILE ẢNH NỀN LỚN CỦA BẠN */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 100vh; /* Đảm bảo đủ cao để hiển thị đẹp */
-    display: flex; /* Dùng flexbox để căn giữa nội dung */
-    align-items: center;
-    justify-content: center;
+    
+    /* Loại bỏ background-image cũ (nếu có) */
+    background-image: none !important; 
+    background-color: var(--bg-cream); /* Dùng màu nền kem (hoặc màu bạn muốn) */
+    min-height: auto; /* Loại bỏ min-height cũ */
+    display: block; /* Loại bỏ display: flex cũ */
 }
 
+/* Khung chứa ảnh và nội dung */
 .hero-content {
-    position: relative; /* Quan trọng: Để các chữ bên trong có thể dùng absolute */
-    z-index: 1; /* Đảm bảo nội dung nằm trên ảnh nền (nếu có overlay) */
-    width: 100%; /* Chiếm toàn bộ chiều rộng của hero-section */
-    text-align: center;
+    /* Đảm bảo nội dung nằm trong container chuẩn */
+    max-width: 800px; 
+    margin: 0 auto; 
     padding: 20px;
-    color: white; /* Chữ màu trắng để nổi bật trên ảnh nền */
+    position: relative; 
+    z-index: 1; 
+    width: 100%;
+    text-align: center;
+    color: var(--text-color); /* Chuyển màu chữ về màu tối */
 }
+
+/* Thêm khung ảnh để chứa ảnh cưới */
+.hero-image-frame {
+    width: 90%; 
+    max-width: 500px; /* Giới hạn kích thước ảnh trên Desktop */
+    margin: 0 auto 20px auto; 
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+    overflow: hidden; /* Quan trọng: Đảm bảo ảnh không tràn ra khỏi khung bo tròn */
+}
+.hero-image-frame img {
+    width: 100%; 
+    height: auto; 
+    display: block;
+}
+
+
+/* Căn chỉnh lại màu chữ và đổ bóng cho chữ trên nền sáng */
+.hero-content .sub-title, .main-names, .hero-date, .date-highlight {
+    color: var(--text-color); /* Màu chữ tối */
+    text-shadow: none; /* Xóa đổ bóng cũ */
+}
+
+.hero-content .sub-title { font-size: 2rem; }
+.main-names { font-size: 3.5rem; }
+.hero-date { font-size: 2rem; }
 
 /* Xóa bỏ hero-image-frame img cũ vì ảnh giờ là background */
 .hero-image-frame img {
@@ -353,6 +380,7 @@ footer i { color: var(--primary-red); }
 .wishes-section .container {
     max-width: 650px; /* Giới hạn chiều rộng cho form và quà cưới */
 }
+
 
 
 
