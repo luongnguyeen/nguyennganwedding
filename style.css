@@ -323,6 +323,36 @@ footer i { color: var(--primary-red); }
 
     .input-group { gap: 20px; }
 }
+/* --- Trong file style.css (Đoạn chung) --- */
+.couple-title {
+    /* Đảm bảo chữ Nhà Trai/Nhà Gái nổi bật */
+    font-family: var(--font-script); 
+    font-size: 1.8rem; 
+    color: var(--primary-red);
+    margin-bottom: 5px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+.groom-box .info-text, .bride-box .info-text {
+    /* Căn lề trái/phải cho thông tin gia đình trên mobile */
+    text-align: center; 
+}
+
+/* Điều chỉnh lại style chữ Hôn nhân là chuyện cả đời */
+.intro-text p {
+    font-family: var(--font-body); /* Đặt lại font nếu cần */
+    color: #333;
+}
+.intro-text .highlight { 
+    /* Đã được thay thế bằng style inline trong HTML ở bước 1 */
+    /* Có thể xóa đoạn này nếu dùng style inline */
+    display: none; 
+}
+/* Thêm/Sửa đoạn này trong file style.css (ngoài @media) */
+
+.wishes-section .container {
+    max-width: 650px; /* Giới hạn chiều rộng cho form và quà cưới */
+}
 
 
 
