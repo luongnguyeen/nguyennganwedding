@@ -257,7 +257,7 @@ h1, h2, h3, h4, h5 { font-family: var(--font-serif); }
     padding: 40px 20px; 
     
     /* Đặt lại màu chữ cho nền tối (nếu love-story-section có nền tối) */
-    color: white; 
+    color: red; 
     text-align: center;
 }
 
@@ -407,6 +407,7 @@ footer i { color: var(--primary-red); }
     padding-right: 20px; /* Đảm bảo có khoảng trống an toàn ở hai bên trên mobile */
     width: 100%; /* Đảm bảo nó vẫn chiếm hết chiều rộng trên mobile */
 }
+
 
 
 
