@@ -77,7 +77,6 @@ h1, h2, h3, h4, h5 { font-family: var(--font-serif); }
 .intro-open .left-door { transform: translateX(-100%); }
 .intro-open .right-door { transform: translateX(100%); }
 
-/* --- HEADER SECTION --- */
 /* --- HEADER SECTION (Ảnh có chữ lồng) --- */
 
 .hero-section {
@@ -141,33 +140,38 @@ h1, h2, h3, h4, h5 { font-family: var(--font-serif); }
 
 /* Các chữ còn lại (Căn BOTTOM) */
 .bottom-text {
-    bottom: 20px; /* Khoảng cách từ dưới lên */
-    color: white; /* Chữ trắng cho nổi bật trên ảnh */
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Đổ bóng cho chữ rõ hơn */
-    text-align: center; /* Đảm bảo nội dung căn giữa tuyệt đối */
+    bottom: 20px; 
+    color: white; /* Đảm bảo chữ trắng */
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.7); /* Tăng đổ bóng để nổi bật hơn */
+    text-align: center; 
+    
+    /* FIX: Đảm bảo có đủ chiều rộng để chữ không bị ẩn */
+    width: 90%; 
+    max-width: calc(100% - 40px); /* Đảm bảo không tràn viền */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2; /* Đảm bảo nằm trên các lớp khác nếu có */
 }
 
 .bottom-text .main-names {
     font-family: var(--font-script);
-    font-size: 3rem; /* Kích thước tên cô dâu chú rể */
+    font-size: 3rem; /* Kích thước chữ cho mobile/mặc định */
     margin: 0;
     
-    /* QUAN TRỌNG: Ngăn chữ bị ngắt xuống dòng */
+    /* Ngăn chữ bị ngắt xuống dòng */
     white-space: nowrap; 
     
-    /* Tùy chọn: Đảm bảo không bị quá sát mép trên Mobile */
-    padding: 0 10px; 
+    /* QUAN TRỌNG: Ẩn phần chữ bị tràn và thêm dấu ... */
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    
+    /* Đảm bảo chữ luôn hiển thị, ngay cả khi bị cắt */
+    display: block; 
 }
-.bottom-text .date-highlight {
-    font-size: 1rem;
-    margin: 5px 0;
-}
-.bottom-text .hero-date {
-    font-family: var(--font-serif);
-    font-size: 1.5rem;
-    border: none; /* Bỏ border cũ */
-    padding: 0;
-    margin: 0;
+
+.bottom-text .date-highlight, .bottom-text .hero-date {
+    color: white; /* Đảm bảo các chữ này cũng trắng */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
 /* --- Media Query cho Desktop (Điều chỉnh kích thước chữ) --- */
@@ -175,13 +179,14 @@ h1, h2, h3, h4, h5 { font-family: var(--font-serif); }
     .top-text { top: 30px; } 
     .top-text .sub-title { font-size: 2.5rem; }
 
-    .bottom-text { bottom: 30px; } 
+.bottom-text { 
+        bottom: 30px; 
+        /* Tăng max-width để tên có thể dài hơn trên Desktop */
+        max-width: 90%; 
+    } 
     
-    .bottom-text .main-names { 
-        font-size: 4.5rem; 
-        /* QUAN TRỌNG: Ngăn tên quá dài bị tràn khỏi khung ảnh trên Desktop */
-        overflow: hidden; 
-        text-overflow: ellipsis; /* Tùy chọn: Thêm dấu ... nếu chữ bị ẩn */
+    .bottom-text .main-names { 
+        font-size: 4.5rem; /* Kích thước lớn hơn cho Desktop */
     }
     
     .bottom-text .date-highlight { font-size: 1.2rem; }
@@ -419,6 +424,7 @@ footer i { color: var(--primary-red); }
     padding-right: 20px; /* Đảm bảo có khoảng trống an toàn ở hai bên trên mobile */
     width: 100%; /* Đảm bảo nó vẫn chiếm hết chiều rộng trên mobile */
 }
+
 
 
 
