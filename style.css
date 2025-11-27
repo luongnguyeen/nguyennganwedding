@@ -80,67 +80,67 @@ h1, h2, h3, h4, h5 { font-family: var(--font-serif); }
 
 /* --- 3. HEADER SECTION (Ảnh 2) --- */
 
-.hero-section { 
-    text-align: center; 
-    padding-top: 50px; /* Thêm lại padding để có khoảng cách với mép trên */
+/* --- HEADER SECTION --- */
+.hero-section {
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 20px;
     position: relative;
     
-    /* Loại bỏ background-image cũ (nếu có) */
     background-image: none !important; 
-    background-color: var(--bg-cream); /* Dùng màu nền kem (hoặc màu bạn muốn) */
-    min-height: auto; /* Loại bỏ min-height cũ */
-    display: block; /* Loại bỏ display: flex cũ */
+    background-color: var(--bg-cream); /* Màu nền sáng */
+    min-height: auto; 
+    display: block; 
 }
 
 /* Khung chứa ảnh và nội dung */
 .hero-content {
-    /* Đảm bảo nội dung nằm trong container chuẩn */
-    max-width: 800px; 
-    margin: 0 auto; 
+    max-width: 800px;
+    margin: 0 auto;
     padding: 20px;
-    position: relative; 
-    z-index: 1; 
+    position: relative;
+    z-index: 1;
     width: 100%;
     text-align: center;
-    color: var(--text-color); /* Chuyển màu chữ về màu tối */
 }
 
-/* Thêm khung ảnh để chứa ảnh cưới */
+/* Khung ảnh (hero-image-frame) */
 .hero-image-frame {
-    width: 90%; 
-    max-width: 500px; /* Giới hạn kích thước ảnh trên Desktop */
-    margin: 0 auto 20px auto; 
+    width: 90%;
+    max-width: 500px; /* Giới hạn kích thước ảnh trên Desktop/Mobile */
+    margin: 0 auto 30px auto;
     border-radius: 20px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
-    overflow: hidden; /* Quan trọng: Đảm bảo ảnh không tràn ra khỏi khung bo tròn */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    overflow: hidden;
+    display: block; /* Đảm bảo khung hiển thị */
 }
+
+/* Thẻ ảnh bên trong (QUAN TRỌNG: KHÔNG ĐƯỢC CÓ display: none) */
 .hero-image-frame img {
-    width: 100%; 
-    height: auto; 
+    width: 100%;
+    height: auto;
     display: block;
 }
 
-
-/* Căn chỉnh lại màu chữ và đổ bóng cho chữ trên nền sáng */
-.hero-content .sub-title, .main-names, .hero-date, .date-highlight {
-    color: var(--text-color); /* Màu chữ tối */
-    text-shadow: none; /* Xóa đổ bóng cũ */
-}
-
-.hero-content .sub-title { font-size: 2rem; }
-.main-names { font-size: 3.5rem; }
-.hero-date { font-size: 2rem; }
-
-/* Xóa bỏ hero-image-frame img cũ vì ảnh giờ là background */
-.hero-image-frame img {
-    display: none; /* Ẩn đi hoặc xóa bỏ đoạn này */
-}
-
-.hero-content .sub-title { 
-    font-family: var(--font-script); 
-    font-size: 2rem; 
-    color: white; /* Đảm bảo chữ trắng */
+/* Căn chỉnh style chữ (sử dụng màu tối cho nền sáng) */
+.hero-content .sub-title {
+    font-family: var(--font-script);
+    font-size: 2rem;
+    color: var(--text-color, #333); /* Màu chữ tối */
     margin-bottom: 10px;
+    text-shadow: none;
+}
+
+.main-names {
+    font-size: 3.5rem;
+    color: var(--text-color, #333);
+    text-shadow: none;
+}
+
+.hero-date, .date-highlight {
+    font-size: 2rem;
+    color: var(--text-color, #333);
+    text-shadow: none;
 }
 .main-names { 
     font-family: var(--font-script); 
@@ -380,6 +380,7 @@ footer i { color: var(--primary-red); }
 .wishes-section .container {
     max-width: 650px; /* Giới hạn chiều rộng cho form và quà cưới */
 }
+
 
 
 
