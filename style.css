@@ -270,34 +270,50 @@ footer { text-align: center; padding: 20px; font-size: 0.9rem; color: #999; }
 footer i { color: var(--primary-red); }
 
 
-/* --- 11. MEDIA QUERY CHO DESKTOP (Tối ưu màn hình lớn > 768px) --- */
+/* --- Trong file style.css, tìm đoạn @media (min-width: 768px) --- */
 @media (min-width: 768px) {
     
     .section-title { font-size: 4rem; }
     .main-names { font-size: 5rem; }
     
+    /* FIX: Bố cục 2 cột cho thông tin cô dâu/chú rể */
     .couple-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr; 
+        grid-template-columns: 1fr 1fr; /* Chia thành 2 cột bằng nhau */
         gap: 50px;
         text-align: left;
     }
     
+    /* FIX: Định vị ảnh và text cho Chú Rể (Nhà Trai) */
     .groom-box {
         display: flex;
-        flex-direction: row;
-        align-items: center;
+        flex-direction: row; /* Ảnh bên trái, text bên phải */
+        align-items: flex-start; /* Căn lề trên */
         text-align: left;
     }
     
+    /* FIX: Định vị ảnh và text cho Cô Dâu (Nhà Gái) */
     .bride-box {
         display: flex;
-        flex-direction: row-reverse; 
-        align-items: center;
+        flex-direction: row-reverse; /* Text bên trái, Ảnh bên phải */
+        align-items: flex-start; /* Căn lề trên */
         text-align: right;
     }
+    
+    /* Điều chỉnh khoảng cách và kích thước ảnh */
     .groom-box .avatar, .bride-box .avatar { margin: 0 20px; }
-    .groom-box .avatar img, .bride-box .avatar img { width: 180px; height: 250px; }
+    /* Thay đổi kích thước ảnh cho desktop, nếu bạn muốn ảnh lớn hơn */
+    .groom-box .avatar img, .bride-box .avatar img { width: 220px; height: 320px; } 
+
+    /* Căn lại lề cho các tiêu đề/tên trong box */
+    .groom-box .name-signature { text-align: left; }
+    .bride-box .name-signature { text-align: right; }
+    
+    /* Căn lại nội dung Nhà Trai/Nhà Gái */
+    .groom-box .info-text { text-align: left; }
+    .bride-box .info-text { text-align: right; }
+
+    /* --- CÁC ĐIỀU CHỈNH KHÁC GIỮ NGUYÊN HOẶC BỔ SUNG --- */
     
     .gallery { grid-template-columns: repeat(4, 1fr); gap: 15px; }
     
