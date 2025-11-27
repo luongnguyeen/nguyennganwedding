@@ -141,14 +141,22 @@ h1, h2, h3, h4, h5 { font-family: var(--font-serif); }
 
 /* Các chữ còn lại (Căn BOTTOM) */
 .bottom-text {
-    bottom: 20px; /* Khoảng cách từ dưới lên */
-    color: white; /* Chữ trắng cho nổi bật trên ảnh */
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Đổ bóng cho chữ rõ hơn */
+    bottom: 20px; /* Khoảng cách từ dưới lên */
+    color: white; /* Chữ trắng cho nổi bật trên ảnh */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Đổ bóng cho chữ rõ hơn */
+    text-align: center; /* Đảm bảo nội dung căn giữa tuyệt đối */
 }
+
 .bottom-text .main-names {
-    font-family: var(--font-script);
-    font-size: 3rem; /* Kích thước tên cô dâu chú rể */
-    margin: 0;
+    font-family: var(--font-script);
+    font-size: 3rem; /* Kích thước tên cô dâu chú rể */
+    margin: 0;
+    
+    /* QUAN TRỌNG: Ngăn chữ bị ngắt xuống dòng */
+    white-space: nowrap; 
+    
+    /* Tùy chọn: Đảm bảo không bị quá sát mép trên Mobile */
+    padding: 0 10px; 
 }
 .bottom-text .date-highlight {
     font-size: 1rem;
@@ -164,13 +172,20 @@ h1, h2, h3, h4, h5 { font-family: var(--font-serif); }
 
 /* --- Media Query cho Desktop (Điều chỉnh kích thước chữ) --- */
 @media (min-width: 768px) {
-    .top-text { top: 30px; } /* Điều chỉnh khoảng cách trên Desktop */
-    .top-text .sub-title { font-size: 2.5rem; }
+    .top-text { top: 30px; } 
+    .top-text .sub-title { font-size: 2.5rem; }
 
-    .bottom-text { bottom: 30px; } /* Điều chỉnh khoảng cách dưới Desktop */
-    .bottom-text .main-names { font-size: 4.5rem; }
-    .bottom-text .date-highlight { font-size: 1.2rem; }
-    .bottom-text .hero-date { font-size: 2rem; }
+    .bottom-text { bottom: 30px; } 
+    
+    .bottom-text .main-names { 
+        font-size: 4.5rem; 
+        /* QUAN TRỌNG: Ngăn tên quá dài bị tràn khỏi khung ảnh trên Desktop */
+        overflow: hidden; 
+        text-overflow: ellipsis; /* Tùy chọn: Thêm dấu ... nếu chữ bị ẩn */
+    }
+    
+    .bottom-text .date-highlight { font-size: 1.2rem; }
+    .bottom-text .hero-date { font-size: 2rem; }
 }
 /* --- 4. COUPLE SECTION (Ảnh 3) --- */
 .couple-grid { 
@@ -404,6 +419,7 @@ footer i { color: var(--primary-red); }
     padding-right: 20px; /* Đảm bảo có khoảng trống an toàn ở hai bên trên mobile */
     width: 100%; /* Đảm bảo nó vẫn chiếm hết chiều rộng trên mobile */
 }
+
 
 
 
