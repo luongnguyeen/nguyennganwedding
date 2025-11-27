@@ -9,11 +9,16 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { 
-    font-family: var(--font-body); 
-    background-color: var(--bg-cream); 
-    color: var(--text-color); 
+body {
+    /* Quan trọng: Ngăn cuộn ngang (tràn ngang) trên toàn bộ trang */
     overflow-x: hidden; 
+    
+    /* Đảm bảo chiều rộng mặc định là 100% của viewport */
+    width: 100%; 
+    
+    /* Thiết lập lại margin mặc định (thường là 0) */
+    margin: 0; 
+    padding: 0;
 }
 h1, h2, h3, h4, h5 { font-family: var(--font-serif); }
 
@@ -426,6 +431,7 @@ footer i { color: var(--primary-red); }
     padding-right: 20px; /* Đảm bảo có khoảng trống an toàn ở hai bên trên mobile */
     width: 100%; /* Đảm bảo nó vẫn chiếm hết chiều rộng trên mobile */
 }
+
 
 
 
