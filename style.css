@@ -381,6 +381,14 @@ footer i { color: var(--primary-red); }
     max-width: 650px; /* Giới hạn chiều rộng cho form và quà cưới */
 }
 
+/* Lớp này dùng để giới hạn chiều rộng nội dung trên Desktop/màn hình rộng */
+.section-content-wrapper {
+    max-width: 900px; /* Giới hạn chiều rộng tối đa, bạn có thể điều chỉnh 800px-1000px */
+    margin: 0 auto; /* Căn nội dung ra giữa màn hình */
+    padding-left: 20px;
+    padding-right: 20px; /* Đảm bảo có khoảng trống an toàn ở hai bên trên mobile */
+    width: 100%; /* Đảm bảo nó vẫn chiếm hết chiều rộng trên mobile */
+}
 
 
 
