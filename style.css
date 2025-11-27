@@ -77,104 +77,101 @@ h1, h2, h3, h4, h5 { font-family: var(--font-serif); }
 .intro-open .left-door { transform: translateX(-100%); }
 .intro-open .right-door { transform: translateX(100%); }
 
-
-/* --- 3. HEADER SECTION (Ảnh 2) --- */
-
 /* --- HEADER SECTION --- */
+/* --- HEADER SECTION (Ảnh có chữ lồng) --- */
+
 .hero-section {
     text-align: center;
-    padding-top: 50px;
-    padding-bottom: 20px;
+    padding: 0; /* Loại bỏ padding-top, padding-bottom ở đây */
     position: relative;
-    
-    background-image: none !important; 
     background-color: var(--bg-cream); /* Màu nền sáng */
-    min-height: auto; 
-    display: block; 
+    min-height: auto;
+    display: block;
 }
 
-/* Khung chứa ảnh và nội dung */
 .hero-content {
-    max-width: 800px;
+    max-width: 800px; /* Giới hạn chiều rộng cho toàn bộ nội dung Header */
     margin: 0 auto;
-    padding: 20px;
+    padding: 0; /* Loại bỏ padding của container để ảnh tự khớp */
     position: relative;
     z-index: 1;
     width: 100%;
     text-align: center;
+    color: var(--text-color); 
 }
 
-/* Khung ảnh (hero-image-frame) */
-.hero-image-frame {
-    width: 90%;
-    max-width: 500px; /* Giới hạn kích thước ảnh trên Desktop/Mobile */
-    margin: 0 auto 30px auto;
+/* Khung bao bọc ảnh và làm gốc cho các chữ absolute */
+.hero-image-wrapper {
+    position: relative; /* Quan trọng: Để các chữ bên trong có thể dùng absolute */
+    width: 90%; /* Chiều rộng ảnh tương đối */
+    max-width: 500px; /* Chiều rộng tối đa trên Desktop */
+    margin: 0 auto; /* Căn giữa */
     border-radius: 20px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    overflow: hidden;
-    display: block; /* Đảm bảo khung hiển thị */
+    overflow: hidden; /* Đảm bảo bo góc ảnh */
+    display: block;
 }
 
-/* Thẻ ảnh bên trong (QUAN TRỌNG: KHÔNG ĐƯỢC CÓ display: none) */
-.hero-image-frame img {
+.hero-image-wrapper img {
     width: 100%;
     height: auto;
     display: block;
 }
 
-/* Căn chỉnh style chữ (sử dụng màu tối cho nền sáng) */
-.hero-content .sub-title {
+/* --- Style cho các chữ lồng vào ảnh --- */
+.top-text, .bottom-text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); /* Căn giữa theo chiều ngang */
+    width: 100%; /* Đảm bảo chiếm toàn bộ chiều rộng để căn giữa text */
+    text-align: center;
+}
+
+/* Chữ "Happy Wedding" (Căn TOP) */
+.top-text {
+    top: 20px; /* Khoảng cách từ trên xuống */
+    color: white; /* Chữ trắng cho nổi bật trên ảnh */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Đổ bóng cho chữ rõ hơn */
+}
+.top-text .sub-title {
     font-family: var(--font-script);
-    font-size: 2rem;
-    color: var(--text-color, #333); /* Màu chữ tối */
-    margin-bottom: 10px;
-    text-shadow: none;
+    font-size: 1.8rem; /* Kích thước chữ Happy Wedding */
+    margin: 0;
 }
 
-.main-names {
-    font-size: 3.5rem;
-    color: var(--text-color, #333);
-    text-shadow: none;
+/* Các chữ còn lại (Căn BOTTOM) */
+.bottom-text {
+    bottom: 20px; /* Khoảng cách từ dưới lên */
+    color: white; /* Chữ trắng cho nổi bật trên ảnh */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Đổ bóng cho chữ rõ hơn */
+}
+.bottom-text .main-names {
+    font-family: var(--font-script);
+    font-size: 3rem; /* Kích thước tên cô dâu chú rể */
+    margin: 0;
+}
+.bottom-text .date-highlight {
+    font-size: 1rem;
+    margin: 5px 0;
+}
+.bottom-text .hero-date {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    border: none; /* Bỏ border cũ */
+    padding: 0;
+    margin: 0;
 }
 
-.hero-date, .date-highlight {
-    font-size: 2rem;
-    color: var(--text-color, #333);
-    text-shadow: none;
-}
-.main-names { 
-    font-family: var(--font-script); 
-    font-size: 3.5rem; 
-    color: white; /* Đảm bảo chữ trắng */
-    margin: 10px 0; 
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Thêm đổ bóng để chữ rõ hơn */
-}
-.date-highlight {
-    color: white;
-    font-size: 1.2rem;
-    margin-top: 15px;
-}
-.hero-date { 
-    font-family: var(--font-serif); 
-    font-size: 2rem; 
-    color: white; /* Đảm bảo chữ trắng */
-    border-top: 1px solid rgba(255,255,255,0.5); 
-    border-bottom: 1px solid rgba(255,255,255,0.5); 
-    display: inline-block; 
-    padding: 10px 30px; 
-    margin-top: 10px; 
-    letter-spacing: 2px;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Thêm đổ bóng */
-}
-
-
-/* --- Media Query cho Desktop (Cập nhật kích thước chữ) --- */
+/* --- Media Query cho Desktop (Điều chỉnh kích thước chữ) --- */
 @media (min-width: 768px) {
-    .hero-content .sub-title { font-size: 2.5rem; }
-    .main-names { font-size: 5rem; }
-    .hero-date { font-size: 2.5rem; }
-}
+    .top-text { top: 30px; } /* Điều chỉnh khoảng cách trên Desktop */
+    .top-text .sub-title { font-size: 2.5rem; }
 
+    .bottom-text { bottom: 30px; } /* Điều chỉnh khoảng cách dưới Desktop */
+    .bottom-text .main-names { font-size: 4.5rem; }
+    .bottom-text .date-highlight { font-size: 1.2rem; }
+    .bottom-text .hero-date { font-size: 2rem; }
+}
 /* --- 4. COUPLE SECTION (Ảnh 3) --- */
 .couple-grid { 
     display: flex; 
@@ -407,6 +404,7 @@ footer i { color: var(--primary-red); }
     padding-right: 20px; /* Đảm bảo có khoảng trống an toàn ở hai bên trên mobile */
     width: 100%; /* Đảm bảo nó vẫn chiếm hết chiều rộng trên mobile */
 }
+
 
 
 
