@@ -31,7 +31,7 @@ section { width: 100%; }
     position: absolute; top: 0; width: 50%; height: 100%;
     background-image: url('images/nen-song-hy.jpg');
     background-size: 200% 100%; background-repeat: no-repeat;
-    background-color: var(--primary-red);
+    /*background-color: var(--primary-red);*/
     transition: transform 1.5s ease-in-out;
 }
 .left-door { left: 0; background-position: left; }
@@ -92,48 +92,97 @@ section { width: 100%; }
    COUPLE SECTION
 ============================= */
 .couple-grid {
-    display: flex; flex-wrap: wrap;
+    display: flex;
+    flex-direction: column; /* Mặc định xếp dọc, nhưng sẽ chuyển thành flex-wrap để căn chỉnh */
     justify-content: center;
-    gap: 35px; margin-top: 30px;
+    align-items: center; /* Căn giữa cho trường hợp màn hình nhỏ */
+    gap: 35px;
+    margin-top: 30px;
 }
+
+/* Áp dụng flex và điều chỉnh kích thước cho cả màn hình nhỏ */
+.groom-box, .bride-box {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 550px; /* Giới hạn độ rộng để dễ quản lý */
+    padding: 0 10px;
+}
+
+/* Định hướng lại cho chú rể (Ảnh-trái, Thông tin-phải) */
+.groom-box { flex-direction: row; text-align: left; }
+.groom-box .info-text { margin-left: 15px; }
+
+/* Định hướng lại cho cô dâu (Thông tin-trái, Ảnh-phải) */
+.bride-box { flex-direction: row; text-align: right; }
+.bride-box .info-text { order: 1; margin-right: 15px; }
+.bride-box .avatar { order: 2; }
+
+/* Giảm kích thước ảnh mặc định */
 .avatar img {
-    width: 240px; height: 340px;
+    width: 150px; /* Giảm từ 240px xuống */
+    height: 200px; /* Giảm từ 340px xuống */
     object-fit: cover;
     border-radius: 12px;
-    border: 5px solid #fff;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border: 3px solid #fff; /* Giảm độ dày border */
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1); /* Giảm shadow */
 }
-.heart-icon {
-    position: absolute; bottom: -15px; right: -10px;
-    background: white; border-radius: 50%; padding: 5px;
-    color: red; font-size: 1.8rem;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-}
+
+/* Giảm kích thước chữ */
 .couple-title {
-    font-family: var(--font-script);
-    font-size: 1.8rem; color: var(--primary-red);
-    border-bottom: 1px solid #eee;
-    margin-bottom: 6px; padding-bottom: 4px;
+    font-size: 1.5rem; /* Giảm từ 1.8rem xuống */
+}
+.groom-box p, .bride-box p {
+    font-size: 0.95rem;
 }
 .name-signature {
-    margin-top: 8px;
-    font-family: var(--font-script);
-    font-size: 2.6rem;
+    font-size: 2rem; /* Giảm từ 2.6rem xuống */
 }
 
+.heart-icon {
+    bottom: -8px; /* Điều chỉnh vị trí */
+    right: -8px;
+    padding: 3px;
+    font-size: 1.2rem;
+}
+
+/* Media query cho màn hình lớn hơn 768px */
 @media (min-width: 768px) {
     .couple-grid {
-        display: grid; grid-template-columns: 1fr 1fr;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         gap: 50px;
+        align-items: flex-start; /* Giữ nguyên cho grid */
     }
     .groom-box, .bride-box {
-        display: flex;
-        align-items: flex-start;
+        max-width: none;
+        padding: 0;
     }
-    .groom-box { flex-direction: row; text-align: left; }
-    .bride-box { flex-direction: row-reverse; text-align: right; }
 
-    .groom-box .avatar, .bride-box .avatar { margin: 0 20px; }
+    /* Thiết lập lại để tối ưu hóa không gian hiển thị 2 cột */
+    .groom-box { flex-direction: row; }
+    .groom-box .info-text { margin-left: 20px; }
+
+    .bride-box { flex-direction: row-reverse; } /* Đảo ngược lại cho cô dâu */
+    .bride-box .info-text { order: 2; margin-right: 20px; }
+    .bride-box .avatar { order: 1; } /* Ảnh nằm bên trái info text */
+
+    /* Kích thước ảnh lớn hơn cho màn hình desktop */
+    .avatar img {
+        width: 190px;
+        height: 280px;
+    }
+}
+
+/* Giữ nguyên phần fix lỗi căn giữa của intro-text */
+.intro-text {
+    text-align: center !important;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.6;
 }
 
 /* =============================
@@ -386,5 +435,6 @@ footer i { color: var(--primary-red); }
     justify-content: center;
     line-height: 1.6;
 }
+
 
 
