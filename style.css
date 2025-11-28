@@ -89,100 +89,152 @@ section { width: 100%; }
 }
 
 /* =============================
-   COUPLE SECTION
+   COUPLE SECTION (Sửa đổi để giống ảnh mẫu)
 ============================= */
+/* Bỏ căn giữa ảnh/text cho màn hình nhỏ, chuyển sang hiển thị 2 cột */
 .couple-grid {
-    display: flex;
-    flex-direction: column; /* Mặc định xếp dọc, nhưng sẽ chuyển thành flex-wrap để căn chỉnh */
-    justify-content: center;
-    align-items: center; /* Căn giữa cho trường hợp màn hình nhỏ */
-    gap: 35px;
+    display: grid; 
+    grid-template-columns: 1fr; /* Mặc định 1 cột */
+    gap: 20px; /* Giảm gap giữa 2 hộp */
     margin-top: 30px;
 }
 
-/* Áp dụng flex và điều chỉnh kích thước cho cả màn hình nhỏ */
+/* Áp dụng thẻ nền và border radius */
 .groom-box, .bride-box {
     display: flex;
-    align-items: flex-start;
+    align-items: center; /* Căn giữa theo chiều dọc */
     width: 100%;
-    max-width: 550px; /* Giới hạn độ rộng để dễ quản lý */
-    padding: 0 10px;
-}
-
-/* Định hướng lại cho chú rể (Ảnh-trái, Thông tin-phải) */
-.groom-box { flex-direction: row; text-align: left; }
-.groom-box .info-text { margin-left: 15px; }
-
-/* Định hướng lại cho cô dâu (Thông tin-trái, Ảnh-phải) */
-.bride-box { flex-direction: row; text-align: right; }
-.bride-box .info-text { order: 1; margin-right: 15px; }
-.bride-box .avatar { order: 2; }
-
-/* Giảm kích thước ảnh mặc định */
-.avatar img {
-    width: 150px; /* Giảm từ 240px xuống */
-    height: 200px; /* Giảm từ 340px xuống */
-    object-fit: cover;
+    max-width: 650px; /* Giới hạn độ rộng để giống layout thẻ */
+    margin: 0 auto;
+    background: var(--bg-cream); /* Nền màu kem */
     border-radius: 12px;
-    border: 3px solid #fff; /* Giảm độ dày border */
-    box-shadow: 0 3px 8px rgba(0,0,0,0.1); /* Giảm shadow */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    padding: 20px;
 }
 
-/* Giảm kích thước chữ */
-.couple-title {
-    font-size: 1.5rem; /* Giảm từ 1.8rem xuống */
+/* --- Phần ảnh đại diện --- */
+.avatar { 
+    position: relative; 
+    padding: 5px; /* Tạo khoảng trắng bên trong border */
+    background: white; 
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
+.avatar img {
+    /* Giảm kích thước ảnh để vừa thẻ */
+    width: 130px; 
+    height: 180px; 
+    object-fit: cover;
+    border-radius: 8px; /* Bo góc nhỏ hơn */
+    border: none; /* Bỏ border ngoài của ảnh */
+    box-shadow: none;
+}
+
+/* Thêm các biểu tượng trang trí nhỏ */
+.groom-box .avatar::before {
+    content: "\f06a"; /* Snowflake */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 5px; right: 5px;
+    color: #bdbdbd; /* Màu nhạt */
+    font-size: 0.8rem;
+}
+.bride-box .avatar::before {
+    content: "\f004"; /* Heart */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 5px; right: 5px;
+    color: #f48fb1;
+    font-size: 0.8rem;
+}
+
+
+/* --- Phần thông tin --- */
+.info-text {
+    flex-grow: 1; /* Cho phép text mở rộng hết không gian còn lại */
+    padding: 0 15px;
+}
+.groom-box .info-text { text-align: left; }
+.bride-box .info-text { text-align: left; } /* Thay đổi từ right sang left để căn chỉnh gọn gàng */
+
+
+/* Thay đổi font và kiểu chữ để giống mẫu */
+.couple-title {
+    font-family: var(--font-script);
+    font-size: 2rem; /* Tăng size để nổi bật */
+    color: #4a4a4a; /* Màu đậm hơn */
+    border-bottom: none;
+    margin-bottom: 4px; padding-bottom: 0;
+}
+.couple-title.small-title {
+    font-size: 1.5rem; /* Tiêu đề nhỏ hơn cho "Chú Rể/Cô Dâu" */
+    margin-top: 10px !important;
+}
+
 .groom-box p, .bride-box p {
     font-size: 0.95rem;
+    line-height: 1.3;
 }
+
 .name-signature {
-    font-size: 2rem; /* Giảm từ 2.6rem xuống */
+    margin-top: 5px;
+    font-family: var(--font-script);
+    font-size: 2.5rem; /* Kích thước lớn cho tên */
+    color: var(--text-color);
 }
 
-.heart-icon {
-    bottom: -8px; /* Điều chỉnh vị trí */
-    right: -8px;
-    padding: 3px;
-    font-size: 1.2rem;
+/* Thêm gạch chân dưới tên (Sử dụng div mới: signature-line) */
+.signature-line {
+    width: 100px;
+    height: 1px;
+    background: #4a4a4a;
+    margin-top: 5px;
+}
+.groom-box .signature-line, .bride-box .signature-line {
+    margin-left: 0; /* Căn trái */
 }
 
-/* Media query cho màn hình lớn hơn 768px */
+
+/* Cấu hình lại bố cục chú rể/cô dâu để giống mẫu */
+.groom-box { flex-direction: row; }
+.bride-box { flex-direction: row-reverse; } /* Đảo ngược để thông tin bên trái, ảnh bên phải */
+
+/* Điều chỉnh khoảng cách bên trong */
+.groom-box .avatar { margin-right: 15px; }
+.bride-box .avatar { margin-left: 15px; }
+
+
+/* Media Query cho màn hình lớn (768px) */
 @media (min-width: 768px) {
     .couple-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 50px;
-        align-items: flex-start; /* Giữ nguyên cho grid */
+        grid-template-columns: 1fr 1fr; /* Chuyển thành 2 cột */
+        gap: 30px;
+        max-width: 850px;
     }
+    
     .groom-box, .bride-box {
         max-width: none;
-        padding: 0;
     }
 
-    /* Thiết lập lại để tối ưu hóa không gian hiển thị 2 cột */
     .groom-box { flex-direction: row; }
-    .groom-box .info-text { margin-left: 20px; }
+    .bride-box { flex-direction: row; } /* Giữ cả hai là row để dễ dàng sắp xếp trong grid 2 cột */
 
-    .bride-box { flex-direction: row-reverse; } /* Đảo ngược lại cho cô dâu */
-    .bride-box .info-text { order: 2; margin-right: 20px; }
-    .bride-box .avatar { order: 1; } /* Ảnh nằm bên trái info text */
+    .groom-box .avatar { margin-right: 25px; }
+    .bride-box .info-text { order: 1; text-align: right; } /* Thông tin Nhà Gái nằm bên trái */
+    .bride-box .avatar { order: 2; margin-left: 25px; } /* Ảnh Cô Dâu nằm bên phải */
 
-    /* Kích thước ảnh lớn hơn cho màn hình desktop */
-    .avatar img {
-        width: 190px;
-        height: 280px;
+    /* Căn chỉnh lại gạch chân cho Nhà Gái (vì text-align: right) */
+    .bride-box .signature-line {
+        margin-right: 0;
+        margin-left: auto; /* Đẩy sang phải */
     }
-}
 
-/* Giữ nguyên phần fix lỗi căn giữa của intro-text */
-.intro-text {
-    text-align: center !important;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    line-height: 1.6;
+    .avatar img {
+        width: 150px;
+        height: 220px;
+    }
 }
 
 /* =============================
@@ -435,6 +487,7 @@ footer i { color: var(--primary-red); }
     justify-content: center;
     line-height: 1.6;
 }
+
 
 
 
