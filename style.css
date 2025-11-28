@@ -1,431 +1,380 @@
-/* --- 1. ROOT VARIABLES & RESET --- */
+/* =============================
+   GLOBAL VARIABLES & RESET
+============================= */
 :root {
     --primary-red: #d32f2f;
-    --bg-cream: #fdfcf0; 
+    --bg-cream: #fdfcf0;
     --text-color: #333;
+
     --font-script: 'Great Vibes', cursive;
     --font-serif: 'Playfair Display', serif;
     --font-body: 'Quicksand', sans-serif;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-/* FIX: Áp dụng cho cả HTML và BODY để ngăn tràn ngang triệt để */
-html, body {
-    overflow-x: hidden; 
-    width: 100%; 
-    margin: 0; 
-    padding: 0;
-}
-h1, h2, h3, h4, h5 { font-family: var(--font-serif); }
-/* ... các đoạn CSS khác ... */
+html, body { width: 100%; overflow-x: hidden; font-family: var(--font-body); }
 
-.container { max-width: 800px; margin: 0 auto; padding: 20px; }
+img { display: block; max-width: 100%; }
+section { width: 100%; }
+.container { max-width: 850px; margin: 0 auto; padding: 20px; }
 .text-danger { color: var(--primary-red); }
-.section-title {
-    font-family: var(--font-script); 
-    font-size: 3rem; 
-    text-align: center;
-    margin: 40px 0 20px; 
-    color: #333;
-}
 
-/* --- 2. INTRO ANIMATION (Đã FIX triệt để) --- */
-/* Trong file style.css, tìm đoạn #intro-overlay */
+/* =============================
+   INTRO – DOOR OPEN
+============================= */
 #intro-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-    z-index: 9999; display: flex; align-items: center; justify-content: center;
-    
-    /* FIX: CHỈ CÓ MÀU NỀN ĐỎ để làm lớp che chắn an toàn */
-   */ background-color: var(--primary-red); */
-    
-    /* Đảm bảo KHÔNG có background-image nào ở đây */
-    /* background-image: none;  <-- có thể thêm dòng này để chắc chắn hơn*/
-    /* background-size: auto; */
-    /* background-position: initial; */
-    /* background-repeat: initial; */
+    position: fixed; inset: 0; z-index: 9999;
+    background: var(--primary-red);
+    display: flex; justify-content: center; align-items: center;
 }
-
-/* Trong file style.css, tìm đoạn .door */
 .door {
     position: absolute; top: 0; width: 50%; height: 100%;
+    background-image: url('images/nen-song-hy.jpg');
+    background-size: 200% 100%; background-repeat: no-repeat;
+    background-color: var(--primary-red);
     transition: transform 1.5s ease-in-out;
-    
-    /* FIX: MỖI CÁNH CỬA MANG ẢNH SONG HỶ VÀ CÓ MÀU NỀN ĐỎ */
-    background-image: url('images/nen-song-hy.jpg'); /* Tên file ảnh Song Hỷ của bạn */
-    background-size: 200% 100%; /* Kéo giãn ảnh ra gấp đôi */
-    background-repeat: no-repeat;
-    
-    /* Quan trọng: Cánh cửa cũng có màu nền đỏ, đề phòng ảnh tải lỗi */
-    background-color: var(--primary-red); 
 }
-
-/* Sửa lại đoạn .left-door */
-.left-door { 
-    left: 0; 
-    /* Hiển thị nửa trái của ảnh */
-    background-position: left center; 
-    border-right: 1px solid rgba(255,255,255,0.2); 
-}
-
-/* Sửa lại đoạn .right-door */
-.right-door { 
-    right: 0; 
-    /* Hiển thị nửa phải của ảnh */
-    background-position: right center; 
-    border-left: 1px solid rgba(255,255,255,0.2); 
-}
-
-/* Khi active class 'open' */
+.left-door { left: 0; background-position: left; }
+.right-door { right: 0; background-position: right; }
 .intro-open .left-door { transform: translateX(-100%); }
 .intro-open .right-door { transform: translateX(100%); }
 
-/* --- HEADER SECTION (Ảnh có chữ lồng) --- */
-
+/* =============================
+   HERO HEADER
+============================= */
 .hero-section {
     text-align: center;
-    padding: 0; /* Loại bỏ padding-top, padding-bottom ở đây */
-    position: relative;
-    background-color: var(--bg-cream); /* Màu nền sáng */
-    min-height: auto;
-    display: block;
+    background: var(--bg-cream);
+    padding: 0;
 }
-
-.hero-content {
-    max-width: 800px; /* Giới hạn chiều rộng cho toàn bộ nội dung Header */
-    margin: 0 auto;
-    padding: 0; /* Loại bỏ padding của container để ảnh tự khớp */
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    text-align: center;
-    color: var(--text-color); 
-}
-
-/* Khung bao bọc ảnh và làm gốc cho các chữ absolute */
 .hero-image-wrapper {
-    position: relative; /* Quan trọng: Để các chữ bên trong có thể dùng absolute */
-    width: 90%; /* Chiều rộng ảnh tương đối */
-    max-width: 500px; /* Chiều rộng tối đa trên Desktop */
-    margin: 0 auto; /* Căn giữa */
+    position: relative;
+    width: 92%; max-width: 520px;
     border-radius: 20px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    overflow: hidden; /* Đảm bảo bo góc ảnh */
-    display: block;
+    margin: 0 auto;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
 }
 
-.hero-image-wrapper img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* --- Style cho các chữ lồng vào ảnh --- */
 .top-text, .bottom-text {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%); /* Căn giữa theo chiều ngang */
-    width: 100%; /* Đảm bảo chiếm toàn bộ chiều rộng để căn giữa text */
-    text-align: center;
+    position: absolute; left: 50%; transform: translateX(-50%);
+    width: 100%; text-align: center;
+    color: #fff; text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
 }
-
-/* Chữ "Happy Wedding" (Căn TOP) */
-.top-text {
-    top: 20px; /* Khoảng cách từ trên xuống */
-    color: white; /* Chữ trắng cho nổi bật trên ảnh */
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Đổ bóng cho chữ rõ hơn */
-}
+.top-text { top: 18px; }
 .top-text .sub-title {
     font-family: var(--font-script);
-    font-size: 1.8rem; /* Kích thước chữ Happy Wedding */
-    margin: 0;
+    font-size: 1.9rem;
 }
 
-/* Các chữ còn lại (Căn BOTTOM) */
-.bottom-text {
-    bottom: 20px; 
-    color: white;
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
-    text-align: center; 
-    
-    /* Loại bỏ width: 90% ở đây. Chỉ giữ lại định vị tuyệt đối */
-    /* FIX: Đảm bảo khối chữ chiếm đủ chiều rộng an toàn */
-    width: calc(100% - 20px); /* Cho phép khối chữ rộng 100% của parent (wrapper) trừ đi 20px an toàn */
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-}
-
+.bottom-text { bottom: 18px; padding: 0 10px; }
 .bottom-text .main-names {
-    font-family: var(--font-script);
-    
-    /* *** FIX: Giảm font size xuống mức an toàn cho tên dài trên Mobile *** */
-    font-size: 1.8rem; /* Giảm xuống 1.8rem (hoặc 2.0rem nếu tên ngắn) */
-    
-    margin: 0;
-    white-space: nowrap;
-    
-    /* FIX: Giữ lại overflow: hidden để cắt dấu ... thay vì gây tràn */
-    overflow: hidden; 
-    text-overflow: ellipsis;
-    display: block;
-    
-    /* Xóa padding 0 10px ở đây vì đã có padding 20px ở .bottom-text */
+    font-family: var(--font-script);
+    font-size: 1.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-
-.bottom-text .date-highlight, .bottom-text .hero-date {
-    color: white; /* Đảm bảo các chữ này cũng trắng */
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+.bottom-text .date-highlight {
+    margin-top: 4px;
+    font-size: 1rem;
 }
+.hero-date { font-size: 1.4rem; margin-top: 4px; }
 
-/* --- Media Query cho Desktop (Điều chỉnh kích thước chữ) --- */
 @media (min-width: 768px) {
-    .top-text { top: 30px; } 
-    .top-text .sub-title { font-size: 2.5rem; }
+    .top-text .sub-title { font-size: 2.6rem; }
+    .bottom-text .main-names { font-size: 4.4rem; }
+    .hero-date { font-size: 2rem; }
+    .bottom-text { bottom: 28px; }
+}
 
-.bottom-text { 
-        bottom: 30px; 
-        /* Tăng max-width để tên có thể dài hơn trên Desktop */
-        max-width: 90%; 
-    } 
-    
-    .bottom-text .main-names { 
-        font-size: 4.5rem; /* Kích thước lớn hơn cho Desktop */
+/* =============================
+   COUPLE SECTION
+============================= */
+.couple-grid {
+    display: flex; flex-wrap: wrap;
+    justify-content: center;
+    gap: 35px; margin-top: 30px;
+}
+.avatar img {
+    width: 240px; height: 340px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 5px solid #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.heart-icon {
+    position: absolute; bottom: -15px; right: -10px;
+    background: white; border-radius: 50%; padding: 5px;
+    color: red; font-size: 1.8rem;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+.couple-title {
+    font-family: var(--font-script);
+    font-size: 1.8rem; color: var(--primary-red);
+    border-bottom: 1px solid #eee;
+    margin-bottom: 6px; padding-bottom: 4px;
+}
+.name-signature {
+    margin-top: 8px;
+    font-family: var(--font-script);
+    font-size: 2.6rem;
+}
+
+@media (min-width: 768px) {
+    .couple-grid {
+        display: grid; grid-template-columns: 1fr 1fr;
+        gap: 50px;
     }
-    
-    .bottom-text .date-highlight { font-size: 1.2rem; }
-    .bottom-text .hero-date { font-size: 2rem; }
-}
-/* --- 4. COUPLE SECTION (Ảnh 3) --- */
-.couple-grid { 
-    display: flex; 
-    flex-wrap: wrap; 
-    justify-content: center; 
-    gap: 30px; 
-    margin-top: 30px; 
-    padding-bottom: 30px;
-}
-.intro-text p { font-family: var(--font-serif); }
-.intro-text .highlight { font-family: var(--font-script); font-size: 1.5rem; color: var(--primary-red); }
+    .groom-box, .bride-box {
+        display: flex;
+        align-items: flex-start;
+    }
+    .groom-box { flex-direction: row; text-align: left; }
+    .bride-box { flex-direction: row-reverse; text-align: right; }
 
-.bride-box, .groom-box { flex: 1 1 300px; text-align: center; }
-.avatar { position: relative; display: inline-block; }
-.avatar img { 
-    width: 250px; height: 350px; object-fit: cover; 
-    border: 5px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
-    border-radius: 10px; 
+    .groom-box .avatar, .bride-box .avatar { margin: 0 20px; }
 }
-.heart-icon { position: absolute; bottom: -15px; right: -10px; color: red; font-size: 2rem; background: white; border-radius: 50%; padding: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-.name-signature { font-family: var(--font-script); font-size: 2.5rem; margin-top: 10px; }
 
-
-/* --- 5. INVITATION CARD (Ảnh 4 & 5) --- */
+/* =============================
+   INVITATION CARDS
+============================= */
 .card-invitation {
-    border: 2px dashed #999; border-radius: 20px; padding: 30px;
-    text-align: center; background: white; margin: 20px 0;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+    background: #fff;
+    padding: 28px;
+    border-radius: 20px;
+    border: 2px dashed #aaa;
+    text-align: center;
+    margin: 25px 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
-.card-invitation h3 { font-family: var(--font-serif); margin-bottom: 15px; color: #333; }
-.guest-name { color: var(--primary-red); font-size: 1.5rem; font-weight: bold; margin: 10px 0; }
-.calendar-row { 
-    display: flex; justify-content: center; align-items: center; gap: 10px; 
-    font-family: var(--font-serif); font-size: 1.5rem; 
-    border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; 
-    padding: 10px 0; margin: 15px 0; 
+.card-invitation .guest-name {
+    color: var(--primary-red);
+    font-size: 1.6rem; font-weight: bold;
 }
-.big-date { font-size: 3rem; color: var(--primary-red); font-weight: bold; }
-.location-box h5 { color: var(--primary-red); margin-top: 15px; font-size: 1.2rem; }
-.couple-names-row span { font-family: var(--font-script); font-size: 2rem; }
+.calendar-row {
+    display: flex; justify-content: center;
+    gap: 12px;
+    padding: 10px 0;
+    margin: 14px 0;
+    border-top: 1px solid #ddd; border-bottom: 1px solid #ddd;
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+}
+.big-date { font-size: 2.8rem; color: var(--primary-red); }
 
-/* --- 6. CALENDAR & MAP (Ảnh 6 & 7) --- */
-.calendar-header { text-align: center; font-family: var(--font-script); font-size: 3rem; color: #2e7d32; margin-bottom: 20px; }
-.calendar-table table { width: 100%; border-collapse: collapse; text-align: center; background: white; border-radius: 10px; overflow: hidden;}
-.calendar-table th, .calendar-table td { padding: 12px; }
-.calendar-table th { color: #555; font-weight: 600; }
-.active-date { 
-    background-color: #ffe0e0; 
-    color: var(--primary-red); 
-    font-weight: bold; 
+/* =============================
+   CALENDAR + MAP
+============================= */
+.calendar-header {
+    text-align: center;
+    font-family: var(--font-script);
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: #2e7d32;
+}
+.calendar-table table {
+    width: 100%; background: #fff;
+    border-radius: 10px; overflow: hidden;
+    border-collapse: collapse;
+}
+.calendar-table td, .calendar-table th {
+    padding: 12px; text-align: center;
+}
+.active-date {
+    background: #ffe4e4;
+    color: var(--primary-red);
+    font-weight: bold;
     border-radius: 5px;
 }
-.map-container { margin-top: 30px; }
-.map-container h3 { text-align: center; margin-bottom: 15px; }
+.map-container { margin-top: 25px; }
 
-
-/* --- 7. ALBUM & LOVE STORY (Ảnh 7, 9) --- */
-.album-section { padding-top: 30px; }
-.gallery { 
-    display: grid; 
-    grid-template-columns: repeat(2, 1fr); 
+/* =============================
+   ALBUM
+============================= */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
 }
-.gallery img { width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+@media (min-width: 768px) {
+    .gallery { grid-template-columns: repeat(4, 1fr); gap: 15px; }
+}
 
-/* --- CSS Giới Hạn Chiều Rộng Cho Nội Dung Lời Ngỏ --- */
-
-.love-story-section .content {
-    /* 1. Giới hạn chiều rộng tối đa cho nội dung */
-    max-width: 850px; 
-    
-    /* 2. Căn nội dung ra giữa màn hình */
-    margin-left: auto;
-    margin-right: auto;
-    
-    /* 3. Đảm bảo nội dung luôn hiển thị */
-    width: 100%;
-    
-    /* Điều chỉnh Padding nếu cần */
-    padding: 40px 20px; 
-    
-    /* Đặt lại màu chữ cho nền tối (nếu love-story-section có nền tối) */
-    color: red; 
+/* =============================
+   LOVE STORY
+============================= */
+.love-story-section {
+    position: relative;
+    background: url('images/love-bg.jpg') center/cover;
+    padding: 60px 20px;
     text-align: center;
 }
-
-/* Tùy chỉnh tiêu đề Lời Ngỏ */
-.love-story-section .content h2 {
-    font-size: 3rem; /* Ví dụ: phóng to tiêu đề */
-    margin-bottom: 20px;
+.overlay-dark {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.45);
 }
+.love-story-section .content {
+    position: relative; z-index: 2;
+    max-width: 850px;
+    margin: 0 auto;
+    color: #fff;
+}
+.love-story-section h2 { font-size: 3rem; margin-bottom: 15px; }
 
-
-/* --- 8. COUNTDOWN (Ảnh 10) --- */
-.countdown-section { 
-    text-align: center; padding: 50px 0; position: relative; 
-    color: white; 
+/* =============================
+   COUNTDOWN
+============================= */
+.countdown-section {
     background: url('images/bg-countdown.jpg') center/cover;
+    text-align: center;
+    color: #fff;
+    padding: 60px 0;
 }
-.countdown-section h3, .countdown-section h2 { position: relative; z-index: 2; }
-#timer { display: flex; justify-content: center; gap: 15px; margin-top: 20px; position: relative; z-index: 2; padding: 0 10px;}
-.time-box { 
-    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/1200px-Heart_coraz%C3%B3n.svg.png') no-repeat center;
-    background-size: cover;
+#timer {
+    display: flex; justify-content: center;
+    gap: 15px; margin-top: 20px;
+}
+.time-box {
+    width: 75px; height: 75px;
+    background: url('https://upload.wik
+/* =============================
+   COUNTDOWN (TIẾP)
+============================= */
+.time-box {
+    width: 75px;
+    height: 75px;
     padding: 10px;
-    width: 70px; height: 70px; 
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/1200px-Heart_coraz%C3%B3n.svg.png') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
-.time-box span { font-size: 1.2rem; font-weight: bold; display: block; line-height: 1.2; color: white;}
-.time-box p { font-size: 0.7rem; margin-top: -5px; color: white;}
+.time-box span {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+.time-box p {
+    margin-top: -4px;
+    font-size: 0.75rem;
+}
+@media (min-width: 768px) {
+    #timer { gap: 40px; }
+    .time-box {
+        width: 100px;
+        height: 100px;
+    }
+    .time-box span { font-size: 2rem; }
+}
 
-/* --- 9. FORM & GIFT (Ảnh 10, 11) --- */
-.wishes-section { padding-top: 30px; padding-bottom: 50px;}
-.form-container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 30px; }
-.input-group { display: flex; gap: 10px; margin-bottom: 10px; }
-input, select, textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; outline: none; }
-textarea { height: 100px; margin-bottom: 10px; }
-button[type="submit"] { width: 100%; background: #c5e1a5; color: #2e7d32; border: none; padding: 12px; font-weight: bold; border-radius: 20px; cursor: pointer; transition: background 0.3s; }
+/* =============================
+   WISHES FORM + GIFT BOX
+============================= */
+.wishes-section {
+    padding-top: 40px;
+    padding-bottom: 60px;
+}
+.form-container {
+    background: #fff;
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-bottom: 35px;
+}
+.input-group {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 1rem;
+}
+textarea { height: 110px; }
+button[type="submit"] {
+    width: 100%;
+    background: #c5e1a5;
+    color: #2e7d32;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
 button[type="submit"]:hover { background: #a2cf6e; }
 
-.gift-box-section { 
-    text-align: center; 
-    background: white; 
-    padding: 30px; 
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+/* --- Gift Box --- */
+.gift-box-section {
+    background: #fff;
+    text-align: center;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.12);
 }
-.gift-btn { background: #f48fb1; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; margin-top: 15px; }
+.gift-btn {
+    background: #f48fb1;
+    color: #fff;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-size: 1rem;
+}
+#qr-codes img {
+    margin-top: 18px;
+    width: 150px;
+    height: 150px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    padding: 6px;
+}
 .hidden { display: none; }
-#qr-codes img { margin-top: 20px; border: 1px solid #ddd; padding: 5px; width: 150px; height: 150px; }
 
+/* =============================
+   MUSIC BUTTON
+============================= */
+.music-control {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 42px;
+    height: 42px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+    cursor: pointer;
+    z-index: 9999;
+    animation: spin 4s linear infinite;
+}
+@keyframes spin { 100% { transform: rotate(360deg); }}
 
-/* --- 10. MUSIC BTN & FOOTER --- */
-.music-control { position: fixed; bottom: 20px; left: 20px; width: 40px; height: 40px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(0,0,0,0.2); cursor: pointer; z-index: 999; animation: spin 4s linear infinite; }
-@keyframes spin { 100% { transform: rotate(360deg); } }
-
-footer { text-align: center; padding: 20px; font-size: 0.9rem; color: #999; }
+/* =============================
+   FOOTER
+============================= */
+footer {
+    text-align: center;
+    padding: 25px;
+    font-size: 0.95rem;
+    color: #666;
+}
 footer i { color: var(--primary-red); }
 
-
-/* --- Trong file style.css, tìm đoạn @media (min-width: 768px) --- */
-@media (min-width: 768px) {
-    
-    .section-title { font-size: 4rem; }
-    .main-names { font-size: 5rem; }
-    
-    /* FIX: Bố cục 2 cột cho thông tin cô dâu/chú rể */
-    .couple-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr; /* Chia thành 2 cột bằng nhau */
-        gap: 50px;
-        text-align: left;
-    }
-    
-    /* FIX: Định vị ảnh và text cho Chú Rể (Nhà Trai) */
-    .groom-box {
-        display: flex;
-        flex-direction: row; /* Ảnh bên trái, text bên phải */
-        align-items: flex-start; /* Căn lề trên */
-        text-align: left;
-    }
-    
-    /* FIX: Định vị ảnh và text cho Cô Dâu (Nhà Gái) */
-    .bride-box {
-        display: flex;
-        flex-direction: row-reverse; /* Text bên trái, Ảnh bên phải */
-        align-items: flex-start; /* Căn lề trên */
-        text-align: right;
-    }
-    
-    /* Điều chỉnh khoảng cách và kích thước ảnh */
-    .groom-box .avatar, .bride-box .avatar { margin: 0 20px; }
-    /* Thay đổi kích thước ảnh cho desktop, nếu bạn muốn ảnh lớn hơn */
-    .groom-box .avatar img, .bride-box .avatar img { width: 220px; height: 320px; } 
-
-    /* Căn lại lề cho các tiêu đề/tên trong box */
-    .groom-box .name-signature { text-align: left; }
-    .bride-box .name-signature { text-align: right; }
-    
-    /* Căn lại nội dung Nhà Trai/Nhà Gái */
-    .groom-box .info-text { text-align: left; }
-    .bride-box .info-text { text-align: right; }
-
-    /* --- CÁC ĐIỀU CHỈNH KHÁC GIỮ NGUYÊN HOẶC BỔ SUNG --- */
-    
-    .gallery { grid-template-columns: repeat(4, 1fr); gap: 15px; }
-    
-    #timer { gap: 40px; }
-    .time-box { width: 100px; height: 100px; }
-    .time-box span { font-size: 2rem; }
-
-    .input-group { gap: 20px; }
+/* =============================
+   FINAL MEDIA ADJUSTMENTS
+============================= */
+@media (max-width: 420px) {
+    .main-names { font-size: 1.6rem !important; }
+    .hero-date { font-size: 1.2rem; }
+    .avatar img { width: 200px; height: 290px; }
 }
-/* --- Trong file style.css (Đoạn chung) --- */
-.couple-title {
-    /* Đảm bảo chữ Nhà Trai/Nhà Gái nổi bật */
-    font-family: var(--font-script); 
-    font-size: 1.8rem; 
-    color: var(--primary-red);
-    margin-bottom: 5px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 5px;
-}
-.groom-box .info-text, .bride-box .info-text {
-    /* Căn lề trái/phải cho thông tin gia đình trên mobile */
-    text-align: center; 
-}
-
-/* Điều chỉnh lại style chữ Hôn nhân là chuyện cả đời */
-.intro-text p {
-    font-family: var(--font-body); /* Đặt lại font nếu cần */
-    color: #333;
-}
-.intro-text .highlight { 
-    /* Đã được thay thế bằng style inline trong HTML ở bước 1 */
-    /* Có thể xóa đoạn này nếu dùng style inline */
-    display: none; 
-}
-/* Thêm/Sửa đoạn này trong file style.css (ngoài @media) */
-
-.wishes-section .container {
-    max-width: 650px; /* Giới hạn chiều rộng cho form và quà cưới */
-}
-
-/* Lớp này dùng để giới hạn chiều rộng nội dung trên Desktop/màn hình rộng */
-.section-content-wrapper {
-    max-width: 900px; /* Giới hạn chiều rộng tối đa, bạn có thể điều chỉnh 800px-1000px */
-    margin: 0 auto; /* Căn nội dung ra giữa màn hình */
-    padding-left: 20px;
-    padding-right: 20px; /* Đảm bảo có khoảng trống an toàn ở hai bên trên mobile */
-    width: 100%; /* Đảm bảo nó vẫn chiếm hết chiều rộng trên mobile */
-}
-
 
